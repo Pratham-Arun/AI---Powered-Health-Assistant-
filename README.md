@@ -303,5 +303,3 @@ When reporting issues, please include:
 - Individual health needs vary and require personalized medical attention
 
 ---
-
-**Made with ❤️ for better healthcare accessibility** 

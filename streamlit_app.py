@@ -5,6 +5,7 @@ import pytz,os,sys
 import datetime
 
 
+
 from dotenv import load_dotenv
 
 # Load environment variables from a .env file
@@ -526,3 +527,4 @@ if st.session_state.auth_token:
                 st.session_state.clear_history_confirm = False
 else:
     st.markdown("<h2 style='text-align: center;'>🔒 Please log in to access the chatbot.</h2>", unsafe_allow_html=True)
+

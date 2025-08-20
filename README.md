@@ -240,16 +240,22 @@ HUGGINGFACE_API_TOKEN=your_token_here
 ## Screenshots
 
 ### Chat Interface with Health Information
-![Chat Interface](./screenshots/chat_interface.png)
+[![Chat Interface](./screenshots/chat_interface.png)](https://www.flickr.com/photos/203389076@N06/54734017580/in/dateposted-public/)
 *Interactive chat showing detailed health information about shoulder pain, including possible causes, self-care measures, and when to seek medical attention*
 
+**[📸 View Full Size Image](https://www.flickr.com/photos/203389076@N06/54734017580/in/dateposted-public/)**
+
 ### Settings and Chat History
-![Settings Panel](./screenshots/settings_panel.png)
+[![Settings Panel](./screenshots/settings_panel.png)](https://www.flickr.com/photos/203389076@N06/54733887454/in/dateposted-public/)
 *Sidebar with theme selection, user authentication, chat history management, and health tips display*
 
+**[📸 View Full Size Image](https://www.flickr.com/photos/203389076@N06/54733887454/in/dateposted-public/)**
+
 ### Main Chat Interface
-![Main Chat](./screenshots/main_chat.png)
+[![Main Chat](./screenshots/main_chat.png)](https://www.flickr.com/photos/203389076@N06/54733872108/in/dateposted-public/)
 *Primary chat interface with medical disclaimer, health assistant chatbot title, and conversation area with user and assistant messages*
+
+**[📸 View Full Size Image](https://www.flickr.com/photos/203389076@N06/54733872108/in/dateposted-public/)**
 
 ## Future Enhancements
 

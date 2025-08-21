@@ -1,0 +1,29 @@
+
+  You can now view your Streamlit app in your browser.
+
+  Local URL: http://localhost:8501
+  Network URL: http://192.168.1.4:8501
+  External URL: http://223.233.65.211:8501
+
+.\.venv\Scripts\python : [nltk_data] Downloading package punkt to 
+C:\Users\Pratham
+At line:1 char:74
++ ... sistant-" ; .\.venv\Scripts\python -m streamlit run app.py --server.h ...
++                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: ([nltk_data] Dow...:\Users\Pratham 
+   :String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+[nltk_data]     arun\AppData\Roaming\nltk_data...
+[nltk_data]   Package punkt is already up-to-date!
+[nltk_data] Downloading package stopwords to C:\Users\Pratham
+[nltk_data]     arun\AppData\Roaming\nltk_data...
+[nltk_data]   Package stopwords is already up-to-date!
+Device set to use cpu
+[nltk_data] Downloading package punkt to C:\Users\Pratham
+[nltk_data]     arun\AppData\Roaming\nltk_data...
+[nltk_data]   Package punkt is already up-to-date!
+[nltk_data] Downloading package stopwords to C:\Users\Pratham
+[nltk_data]     arun\AppData\Roaming\nltk_data...
+[nltk_data]   Package stopwords is already up-to-date!
+Device set to use cpu

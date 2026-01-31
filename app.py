@@ -1,11 +1,15 @@
 import streamlit as st
 import traceback
+import datetime
+import os
 
+# Diagnostic wrapper to catch early startup errors
 try:
     from medical_engine import engine
 except Exception as e:
-    st.error(f"Error loading Medical Engine: {e}")
+    st.error(f"❌ Critical Error: Could not load Medical Engine.")
     st.code(traceback.format_exc())
+    st.info("Check if 'medical_engine.py' exists in the repository and has no syntax errors.")
     st.stop()
 
 # Set page config

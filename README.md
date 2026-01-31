@@ -1,5 +1,7 @@
 # 🩺 AI-Powered Health Assistant
 
+[![Streamlit App](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://aiphagg.streamlit.app/)
+
 A comprehensive health assistant chatbot built with Streamlit and a custom Medical Engine, providing intelligent health insights, progress tracking, and professional health reports.
 
 ## Problem Statement

@@ -73,7 +73,5 @@ Seeking reliable health info and tracking tools shouldn't be complicated. This a
 
 ⚠️ **Important Medical Disclaimer**: This AI assistant provides general health information only. It is not a substitute for professional medical advice, diagnosis, or treatment. Always consult with qualified healthcare professionals for medical concerns. In case of emergency, call your local emergency services immediately.
 
-**Made with ❤️ for better healthcare accessibility**
-
 ---
 *Note: This project was built with the assistance of advanced AI tools to accelerate development and ensure high-quality code implementation.*

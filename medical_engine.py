@@ -1,3 +1,4 @@
+# Standard imports
 import random
 import re
 import datetime
@@ -9,9 +10,6 @@ try:
     PDF_READY = True
 except ImportError:
     PDF_READY = False
-
-import numpy as np
-from PIL import Image
 
 class MedicalEngine:
     def __init__(self):

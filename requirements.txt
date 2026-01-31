@@ -1,5 +1,2 @@
 streamlit
 fpdf2
-numpy
-Pillow
-python-dotenv

@@ -69,6 +69,7 @@ def healthcare_chatbot(user_input):
         else:
             return f"I understand you're asking about '{user_input}'. This is a general health question. For specific medical advice, please consult a healthcare professional."
 
+
 # Streamlit web app interface
 def main():
     # Set up the web app title and input area

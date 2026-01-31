@@ -1,7 +1,12 @@
 import streamlit as st
-import requests
-import os
-from medical_engine import engine
+import traceback
+
+try:
+    from medical_engine import engine
+except Exception as e:
+    st.error(f"Error loading Medical Engine: {e}")
+    st.code(traceback.format_exc())
+    st.stop()
 
 # Set page config
 st.set_page_config(page_title="Health Assistant", page_icon="🩺", layout="wide")

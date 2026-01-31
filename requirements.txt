@@ -1,5 +1,10 @@
 streamlit
 transformers
-tensorflow
-nltk
-tf-keras
+fpdf2
+easyocr
+torch
+torchvision
+torchaudio
+numpy
+Pillow
+python-dotenv

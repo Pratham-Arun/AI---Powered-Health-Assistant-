@@ -3,17 +3,12 @@ import re
 import datetime
 import io
 
+# PDF support
 try:
     from fpdf import FPDF
     PDF_READY = True
 except ImportError:
     PDF_READY = False
-
-try:
-    import easyocr
-    OCR_READY = True
-except ImportError:
-    OCR_READY = False
 
 import numpy as np
 from PIL import Image
@@ -368,50 +363,6 @@ class MedicalEngine:
 
         return self._format_fallback_response(query, t)
 
-    def interpret_lab_results(self, text, lang="en"):
-        t = self.translations.get(lang, self.translations["en"])
-        found_markers = []
-        text_lower = text.lower()
-
-        for marker, bounds in self.lab_markers.items():
-            # Simple regex to find "Marker: Value" or "Marker Value"
-            pattern = rf"{marker}\s*(?::|)\s*(\d+(?:\.\d+|))"
-            match = re.search(pattern, text_lower)
-            if match:
-                val = float(match.group(1))
-                status = "Normal"
-                if val < bounds["min"]: status = bounds["low"]
-                elif val > bounds["max"]: status = bounds["high"]
-                
-                found_markers.append({
-                    "name": marker.capitalize(),
-                    "value": val,
-                    "unit": bounds["unit"],
-                    "range": f"{bounds['min']} - {bounds['max']}",
-                    "status": status
-                })
-
-        if not found_markers:
-            return "No common lab markers identified. Please ensure the report contains keywords like Hemoglobin, Glucose, or WBC."
-
-        response = f"### 🔬 {t.get('lab_interpretation', 'Lab Interpretation')}\n\n"
-        for m in found_markers:
-            color = "green" if m["status"] == "Normal" else "red"
-            response += f"- **{m['name']}**: {m['value']} {m['unit']} (Normal: {m['range']}) -> <span style='color:{color}'>{m['status']}</span>\n"
-        
-        response += "\n---\n*Disclaimer: Artificial intelligence analysis is not a medical diagnosis. Always review lab results with your doctor.*"
-        return response
-
-    def extract_text_from_image(self, image_bytes):
-        """Extract text from an image using EasyOCR."""
-        if not OCR_READY:
-            return "OCR module (EasyOCR) is currently installing or not found. Please wait a moment or check your installation."
-        try:
-            reader = easyocr.Reader(['en']) # Support more if needed
-            result = reader.readtext(image_bytes, detail=0)
-            return " ".join(result)
-        except Exception as e:
-            return f"Error during OCR: {str(e)}"
 
     def generate_health_report(self, messages, bmi=None, water_intake=0, water_goal=2500, lang="en"):
         if not PDF_READY:

@@ -171,28 +171,6 @@ with tab_chat:
 
         st.rerun()
 
-    # --- PDF Export Section ---
-    st.divider()
-    if st.session_state.messages:
-        if st.button("📄 Download My Health Report"):
-            with st.spinner("Generating PDF Report..."):
-                try:
-                    pdf_bytes = engine.generate_health_report(
-                        st.session_state.messages,
-                        bmi=st.session_state.get("last_bmi"),
-                        water_intake=st.session_state.get("water_intake", 0),
-                        water_goal=st.session_state.get("water_goal", 2500)
-                    )
-                    st.download_button(
-                        label="Click Here to Download PDF",
-                        data=pdf_bytes,
-                        file_name=f"Health_Report_{datetime.datetime.now().strftime('%Y%m%d_%H%M%S')}.pdf",
-                        mime="application/pdf"
-                    )
-                except Exception as e:
-                    st.error(f"Error generating PDF: {e}")
-
-        st.rerun()
 
 if "water_goal" not in st.session_state:
     st.session_state.water_goal = 2500  # ml

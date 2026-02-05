@@ -4,13 +4,6 @@ import re
 import datetime
 import io
 
-# PDF support
-try:
-    from fpdf import FPDF
-    PDF_READY = True
-except ImportError:
-    PDF_READY = False
-
 class MedicalEngine:
     def __init__(self):
         # Structured knowledge base with patient-friendly explanations and consultation triggers
@@ -362,50 +355,6 @@ class MedicalEngine:
         return self._format_fallback_response(query, t)
 
 
-    def generate_health_report(self, messages, bmi=None, water_intake=0, water_goal=2500, lang="en"):
-        if not PDF_READY:
-            raise ImportError("PDF module (fpdf2) is currently installing or not found. Please wait a moment.")
-            
-        t = self.translations.get(lang, self.translations["en"])
-        pdf = FPDF()
-        pdf.add_page()
-        
-        # Title
-        pdf.set_font("Arial", "B", 16)
-        pdf.cell(200, 10, txt="Health Assistant Report", ln=True, align='C')
-        pdf.set_font("Arial", "", 10)
-        pdf.cell(200, 10, txt=f"Generated on: {datetime.datetime.now().strftime('%Y-%m-%d %I:%M %p')}", ln=True, align='C')
-        pdf.ln(10)
-
-        # Health Metrics
-        pdf.set_font("Arial", "B", 14)
-        pdf.cell(200, 10, txt="1. Health Metrics Summary", ln=True)
-        pdf.set_font("Arial", "", 12)
-        if bmi:
-            pdf.cell(200, 10, txt=f"- BMI: {bmi:.1f}", ln=True)
-        pdf.cell(200, 10, txt=f"- Water Intake: {water_intake}ml / {water_goal}ml", ln=True)
-        pdf.ln(5)
-
-        # Chat Summary
-        pdf.set_font("Arial", "B", 14)
-        pdf.cell(200, 10, txt="2. Consultation Summary", ln=True)
-        pdf.set_font("Arial", "", 10)
-        
-        for msg in messages:
-            role = "USER" if msg["role"] == "user" else "ASSISTANT"
-            pdf.set_font("Arial", "B", 10)
-            pdf.cell(200, 8, txt=f"{role}:", ln=True)
-            pdf.set_font("Arial", "", 10)
-            # Filter out icons and markdown bolding for the PDF
-            content = msg["content"].replace("🩺", "").replace("🤖", "").replace("🧑‍💬", "").replace("**", "").replace("🚨", "")
-            pdf.multi_cell(0, 5, txt=content)
-            pdf.ln(2)
-
-        pdf.ln(10)
-        pdf.set_font("Arial", "I", 8)
-        pdf.multi_cell(0, 5, txt="Disclaimer: This report is for informational purposes only and is not a clinical diagnosis. Always consult with a licensed healthcare professional.")
-        
-        return pdf.output(dest='S') # Return PDF as byte string
 
     def _format_multi_condition_response(self, topics, t):
         summary = f"## Potential Related Conditions\n\n"

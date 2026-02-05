@@ -16,91 +16,50 @@ except Exception as e:
 st.set_page_config(page_title="Health Assistant", page_icon="🩺", layout="wide")
 
 # Apply Theme / CSS
-def apply_custom_css(theme):
-    if theme == "🌙 Dark Mode":
-        st.markdown("""
-            <style>
-                @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
-                html, body, [data-testid="stAppViewContainer"] {
-                    font-family: 'Inter', sans-serif;
-                    background-color: #0f172a !important;
-                    color: #f8fafc !important;
-                }
-                .stChatMessage {
-                    background-color: #1e293b !important;
-                    border: 1px solid #334155 !important;
-                    border-radius: 12px !important;
-                    padding: 15px !important;
-                    margin-bottom: 10px !important;
-                }
-                .stTextInput>div>div>input {
-                    background-color: #1e293b !important;
-                    color: white !important;
-                    border: 1px solid #475569 !important;
-                    border-radius: 10px;
-                }
-                .stButton>button {
-                    background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%) !important;
-                    color: white !important;
-                    border: none !important;
-                    border-radius: 8px !important;
-                    font-weight: 600 !important;
-                }
-                [data-testid="stSidebar"] {
-                    background-color: #0f172a !important;
-                    border-right: 1px solid #1e293b !important;
-                }
-            </style>
-        """, unsafe_allow_html=True)
-    else:
-        st.markdown("""
-            <style>
-                @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
-                html, body, [data-testid="stAppViewContainer"] {
-                    font-family: 'Inter', sans-serif;
-                    background-color: #f1f5f9 !important;
-                    color: #1e293b !important;
-                }
-                .stChatMessage {
-                    background-color: #ffffff !important;
-                    border: 1px solid #e2e8f0 !important;
-                    border-radius: 12px !important;
-                    padding: 15px !important;
-                    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-                    color: #1e293b !important;
-                }
-                /* Target all text inside chat messages */
-                .stChatMessage p, .stChatMessage div, .stChatMessage span {
-                    color: #1e293b !important;
-                }
-                .stTextInput>div>div>input {
-                    background-color: #ffffff !important;
-                    color: #1e293b !important;
-                    border: 1px solid #cbd5e1 !important;
-                    border-radius: 10px;
-                }
-                .stButton>button {
-                    background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%) !important;
-                    color: white !important;
-                    border: none !important;
-                    border-radius: 8px !important;
-                    font-weight: 600 !important;
-                }
-                [data-testid="stSidebar"] {
-                    background-color: #ffffff !important;
-                    border-right: 1px solid #e2e8f0 !important;
-                }
-                [data-testid="stSidebar"] * {
-                    color: #1e293b !important;
-                }
-            </style>
-        """, unsafe_allow_html=True)
+# Apply Custom CSS (Dark Mode Only)
+def apply_custom_css():
+    st.markdown("""
+        <style>
+            @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+            html, body, [data-testid="stAppViewContainer"] {
+                font-family: 'Inter', sans-serif;
+                background-color: #0f172a !important;
+                color: #f8fafc !important;
+            }
+            .stChatMessage {
+                background-color: #1e293b !important;
+                border: 1px solid #334155 !important;
+                border-radius: 12px !important;
+                padding: 15px !important;
+                margin-bottom: 10px !important;
+            }
+            .stTextInput>div>div>input {
+                background-color: #1e293b !important;
+                color: white !important;
+                border: 1px solid #475569 !important;
+                border-radius: 10px;
+            }
+            .stButton>button {
+                background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%) !important;
+                color: white !important;
+                border: none !important;
+                border-radius: 8px !important;
+                font-weight: 600 !important;
+            }
+            [data-testid="stSidebar"] {
+                background-color: #0f172a !important;
+                border-right: 1px solid #1e293b !important;
+            }
+            /* Styling for markdown and text to ensure visibility in dark mode */
+            .stMarkdown, p, span, label {
+                color: #f1f5f9 !important;
+            }
+        </style>
+    """, unsafe_allow_html=True)
 
 # Initialize session states
 if "messages" not in st.session_state:
     st.session_state.messages = []
-if "theme" not in st.session_state:
-    st.session_state.theme = "🌙 Dark Mode"
 if "language" not in st.session_state:
     st.session_state.language = "en" # Internal tracking for last detected lang
 if "med_checklist" not in st.session_state:
@@ -109,10 +68,7 @@ if "med_checklist" not in st.session_state:
 # Sidebar
 with st.sidebar:
     st.title("🩺 Health Assistant")
-    
-    # Theme Selection
-    st.session_state.theme = st.radio("Appearance", ["🌞 Light Mode", "🌙 Dark Mode"], index=1 if st.session_state.theme == "🌙 Dark Mode" else 0)
-    apply_custom_css(st.session_state.theme)
+    apply_custom_css()
     
     st.divider()
     
